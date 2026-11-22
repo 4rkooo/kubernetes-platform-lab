@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: #data about the deployment
+    name: whoami-deployment
+    namespace: platform-lab
+    labels:
+      app: backend
+spec:
+  replicas: 2
+  selector: #identify which pods belong to the deployment
+    matchLabels: #manage pods with this label 
+        app: backend 
+  template: #Pod template
+    metadata:
+      labels: 
+        app: backend
+    spec: #pod configuration
+      containers: #container configuration
+      - name: whoami
+        image: traefik/whoami:v1.11.0-arm64
+        ports: 
+        - containerPort: 80 
+      
