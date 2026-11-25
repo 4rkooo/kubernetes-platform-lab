@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment 
+metadata:
+   name: nginx-deployment
+   namespace: platform-lab
+   labels:
+     app: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+        app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:stable-alpine
+        ports:
+        - containerPort: 80
+
